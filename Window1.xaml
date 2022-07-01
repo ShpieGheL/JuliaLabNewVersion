@@ -5,26 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuliaUpgrade2._0"
         mc:Ignorable="d"
-        Title="Фильтр" Height="550" Width="700" ResizeMode="NoResize">
+        Title="Фильтр" MinHeight="400" MaxHeight="550" MinWidth="700">
     <Grid Name="G1">
-        <Label Name="L1" FontSize="20" Margin="0,0,510,470" Content="Дата прихода:"/>
-        <ComboBox Name="C1" FontSize="20" Margin="200,0,10,470" IsEditable="True" StaysOpenOnEdit="True"/>
-        <Label Name="L2" FontSize="20" Margin="0,50,510,420" Content="Дата ухода:"/>
-        <ComboBox Name="C2" FontSize="20" Margin="200,50,10,420" IsEditable="True" StaysOpenOnEdit="True"/>
-        <Label Name="L3" FontSize="20" Margin="0,100,510,370" Content="Клиника:"/>
-        <ComboBox Name="C3" FontSize="20" Margin="200,100,10,370" IsEditable="True" StaysOpenOnEdit="True"/>
-        <Label Name="L4" FontSize="20" Margin="0,150,510,320" Content="ФИО врача:"/>
-        <ComboBox Name="C4" FontSize="20" Margin="200,150,10,320" IsEditable="True" StaysOpenOnEdit="True"/>
-        <Label Name="L5" FontSize="20" Margin="0,200,510,270" Content="ФИО пациента:"/>
-        <ComboBox Name="C5" FontSize="20" Margin="200,200,10,270" IsEditable="True" StaysOpenOnEdit="True"/>
-        <Label Name="L6" FontSize="20" Margin="0,250,510,220" Content="Вид работы:"/>
-        <ComboBox Name="C6" FontSize="20" Margin="200,250,10,220" IsEditable="True" StaysOpenOnEdit="True"/>
-        <Label Name="L7" FontSize="20" Margin="0,300,510,170" Content="Работник:"/>
-        <ComboBox Name="C7" FontSize="20" Margin="200,300,10,170" IsEditable="True" StaysOpenOnEdit="True"/>
-        <Label Name="L8" FontSize="20" Margin="0,350,510,120" Content="Статус:"/>
-        <ComboBox Name="C8" FontSize="20" Margin="200,350,10,120" IsEditable="True" IsReadOnly="True"/>
-        <Label Name="L9" FontSize="20" Margin="0,400,510,70" Content="Номер:"/>
-        <ComboBox Name="C9" FontSize="20" Margin="200,400,10,70" IsEditable="True" StaysOpenOnEdit="True"/>
-        <Button Name="B1" FontSize="20" Margin="10,450,10,10" Content="Фильтровать" Click="B1_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Name="L1" FontSize="20" Content="Дата прихода:"/>
+        <ComboBox Name="C1" FontSize="20" Grid.ColumnSpan="2" Margin="200,0,0,0" IsEditable="True" StaysOpenOnEdit="True"/>
+        <Label Name="L2" FontSize="20" Grid.Row="1" Content="Дата ухода:"/>
+        <ComboBox Name="C2" FontSize="20" Grid.Row="1" Grid.ColumnSpan="2" Margin="200,0,0,0" IsEditable="True" StaysOpenOnEdit="True"/>
+        <Label Name="L3" FontSize="20" Grid.Row="2" Content="Клиника:"/>
+        <ComboBox Name="C3" FontSize="20" Grid.Row="2" Grid.ColumnSpan="2" Margin="200,0,0,0" IsEditable="True" StaysOpenOnEdit="True"/>
+        <Label Name="L4" FontSize="20" Grid.Row="3" Content="ФИО врача:"/>
+        <ComboBox Name="C4" FontSize="20" Grid.Row="3" Grid.ColumnSpan="2" Margin="200,0,0,0" IsEditable="True" StaysOpenOnEdit="True"/>
+        <Label Name="L5" FontSize="20" Grid.Row="4" Content="ФИО пациента:"/>
+        <ComboBox Name="C5" FontSize="20" Grid.Row="4" Grid.ColumnSpan="2" Margin="200,0,0,0" IsEditable="True" StaysOpenOnEdit="True"/>
+        <Label Name="L6" FontSize="20" Grid.Row="5" Content="Вид работы:"/>
+        <ComboBox Name="C6" FontSize="20" Grid.Row="5" Grid.ColumnSpan="2" Margin="200,0,0,0" IsEditable="True" StaysOpenOnEdit="True"/>
+        <Label Name="L7" FontSize="20" Grid.Row="6" Content="Работник:"/>
+        <ComboBox Name="C7" FontSize="20" Grid.Row="6" Grid.ColumnSpan="2" Margin="200,0,0,0" IsEditable="True" StaysOpenOnEdit="True"/>
+        <Label Name="L8" FontSize="20" Grid.Row="7" Content="Статус:"/>
+        <ComboBox Name="C8" FontSize="20" Grid.Row="7" Grid.ColumnSpan="2" Margin="200,0,0,0" IsEditable="True" IsReadOnly="True"/>
+        <Label Name="L9" FontSize="20" Grid.Row="8" Content="Номер:"/>
+        <ComboBox Name="C9" FontSize="20" Grid.Row="8" Grid.ColumnSpan="2" Margin="200,0,0,0" IsEditable="True" StaysOpenOnEdit="True"/>
+        <Button Name="B1" FontSize="20" Grid.Row="9" Grid.ColumnSpan="2" Content="Фильтровать" Click="B1_Click"/>
     </Grid>
 </Window>

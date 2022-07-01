@@ -5,164 +5,260 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuliaUpgrade2._0"
         mc:Ignorable="d"
-        Title="Window2" Height="865" Width="1600" ResizeMode="NoResize">
+        Title="Наряд №" Height="850" MinHeight="600" MinWidth="1000" Width="1600">
     <Grid x:Name="G3">
-        <Image Name="Tab3I1" Margin="810,280,300,440" Stretch="Fill"/>
-        <Label Name="Tab3L1" Margin="5,5,800,680" BorderThickness="1" BorderBrush="Black"/>
-        <Label Name="Tab3L2" Margin="10,10,1320,760"  FontSize="20" Content="Дата прихода наряда:"/>
-        <DatePicker Name="Tab3D1" Margin="380,10,810,770" FontSize="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="630" Width="*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="60" MinHeight="40"/>
+            <RowDefinition MaxHeight="60" MinHeight="40"/>
+            <RowDefinition MaxHeight="60" MinHeight="40"/>
+            <RowDefinition MaxHeight="60" MinHeight="40"/>
+            <RowDefinition MaxHeight="60" MinHeight="40"/>
+            <RowDefinition MaxHeight="60" MinHeight="40"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition/>
+            <RowDefinition MaxHeight="60" MinHeight="40"/>
+            <RowDefinition MaxHeight="60" MinHeight="40"/>
+            <RowDefinition MaxHeight="60" MinHeight="40"/>
+        </Grid.RowDefinitions>
+        <Label Name="Tab3L1" Grid.RowSpan="3" BorderThickness="1" BorderBrush="Black"/>
+        <Label Name="Tab3L2" FontSize="20" Content="Дата прихода наряда:" VerticalContentAlignment="Center"/>
+        <DatePicker Name="Tab3D1" HorizontalAlignment="Right" Width="395" FontSize="20" Margin="200,5,5,5">
             <DatePicker.ToolTip>
                 <ToolTip Content="Дата прихода наряда"/>
             </DatePicker.ToolTip>
         </DatePicker>
-        <Label Name="Tab3L3" Margin="10,50,1320,720" FontSize="20" Content="Дата ухода наряда:"/>
-        <Label Name="Tab3L34" Margin="10,90,1250,690" FontSize="20" Content="Дата передачи курьеру:"/>
-        <DatePicker Name="Tab3D5" Margin="380,100,1050,685" FontSize="20">
+        <Label Name="Tab3L3" Grid.Row="1" FontSize="20" Content="Дата ухода наряда:" VerticalContentAlignment="Center"/>
+        <Label Name="Tab3L34" Grid.Row="2" FontSize="20" Content="Дата передачи курьеру:" VerticalContentAlignment="Center"/>
+        <DatePicker Name="Tab3D5" Grid.Row="2" Margin="0,5,200,5" HorizontalAlignment="Right" Width="200" FontSize="20">
             <DatePicker.ToolTip>
                 <ToolTip Content="Дата передачи работы курьеру"/>
             </DatePicker.ToolTip>
         </DatePicker>
-        <DatePicker Name="Tab3D2" Margin="380,50,810,730" FontSize="20">
+        <DatePicker Name="Tab3D2" Grid.Row="1" HorizontalAlignment="Right" Width="395" FontSize="20" Margin="200,5,5,5">
             <DatePicker.ToolTip>
-                <ToolTip Content="Дата прихода наряда"/>
+                <ToolTip Content="Дата ухода наряда"/>
             </DatePicker.ToolTip>
         </DatePicker>
-        <Label Name="Tab3L35" Margin="560,100,900,690" FontSize="20" Content="Время:"/>
-        <TextBox Name="TabT6" Margin="640,100,810,685" FontSize="20"/>
-        <Label Name="Tab3L4" Margin="5,160,800,520" BorderThickness="1" BorderBrush="Black"/>
-        <Label Name="Tab3L5" Margin="10,164,1410,615" FontSize="20" Content="Клиника:"/>
-        <ComboBox Name="Tab3CB1" Margin="200,164,810,620" IsEditable="True" FontSize="20"/>
-        <Label Name="Tab3L6" Margin="10,204,1410,575" FontSize="20" Content="ФИО врача:"/>
-        <ComboBox Name="Tab3CB2" Margin="200,204,810,580" IsEditable="True" FontSize="20"/>
-        <Label Name="Tab3L7" Margin="10,244,1350,535" FontSize="20" Content="ФИО пациента:"/>
-        <TextBox Name="Tab3T1" Margin="200,244,810,540" FontSize="20"/>
-        <Label  Name="Tab3L8" Content="Данные о пациенте" Margin="5,320,800,260" BorderThickness="1" FontSize="20" BorderBrush="Black"/>
-        <Label Name="Tab3L9" Margin="8,370,1420,410" FontSize="20" Content="Пол:"/>
-        <CheckBox Name="Tab3Ch1" Margin="10,410,1420,370" FontSize="20" Content="Мужской" Checked="Tab3Ch1_C"/>
-        <CheckBox Name="Tab3Ch2" Margin="10,450,1420,330" FontSize="20" Content="Женский" Checked="Tab3Ch2_C"/>
-        <Label Name="Tab3L10" Margin="170,370,1260,410" FontSize="20" Content="Тип лица:"/>
-        <CheckBox Name="Tab3Ch3" Margin="170,410,1260,370" FontSize="20" Content="Круглое" Checked="Tab3Ch3_C"/>
-        <CheckBox Name="Tab3Ch4" Margin="170,450,1220,330" FontSize="20" Content="Треугольное" Checked="Tab3Ch4_C"/>
-        <CheckBox Name="Tab3Ch5" Margin="170,490,1220,290" FontSize="20" Content="Квадратное" Checked="Tab3Ch5_C"/>
-        <Label Name="Tab3L11" Margin="340,370,1050,410" FontSize="20" Content="Возраст (лет):"/>
-        <TextBox Name="Tab3T2" Margin="340,410,1130,370" FontSize="20"/>
-        <Label Name="Tab3L13" Margin="340,450,1050,330" FontSize="20" Content="Цвет зубов:"/>
-        <TextBox Name="Tab3T3" Margin="340,490,1050,290" FontSize="20"/>
-        <Label Name="Tab3L33" Margin="550,370,850,410" Content="Челюсть:" FontSize="20"/>
-        <CheckBox Name="Tab3Ch6" Margin="550,420,850,360" FontSize="20" Content="Верхняя" Checked="Tab3Ch6_Checked"/>
-        <CheckBox Name="Tab3Ch7" Margin="550,470,850,310" FontSize="20" Content="Нижняя" Checked="Tab3Ch7_Checked"/>
-        <Label Name="Tab3L14" Margin="5,580,800,180" BorderThickness="1" BorderBrush="Black"/>
-        <Label Name="Tab3L15" Margin="10,590,1200,190" Content="Исполнительный сотрудник:" FontSize="20"/>
-        <ComboBox Name="Tab3CB3" Margin="300,590,810,190" IsEditable="True" FontSize="20"/>
-        <Label Name="Tab3L16" Margin="5,665,800,100" BorderThickness="1" BorderBrush="Black"/>
-        <Label Name="Tab3L17" Margin="10,680,1300,100" FontSize="20" Content="Комментарий:"/>
-        <TextBox Name="Tab3T4" Margin="170,680,810,110" FontSize="20"/>
-        <Label Name="Tab3L18" Margin="5,740,800,5" BorderThickness="1" BorderBrush="Black"/>
-        <Label Name="Tab3L19" Margin="290,750,1100,30" FontSize="20" Content="Статус:"/>
-        <ComboBox Name="Tab3CB4" Margin="400,750,810,30" FontSize="20">
-            <ComboBoxItem Foreground="Green" Selected="Tab2CB4_I1">Оплачено</ComboBoxItem>
-            <ComboBoxItem Foreground="LightGreen" Selected="Tab2CB4_I2">Сдано</ComboBoxItem>
-            <ComboBoxItem Foreground="BurlyWood" Selected="Tab2CB4_I3">В работе</ComboBoxItem>
-            <ComboBoxItem Foreground="Chocolate" Selected="Tab2CB4_I4">Ожидание оплаты</ComboBoxItem>
-            <ComboBoxItem Foreground="Red" Selected="Tab2CB4_I5">Долг</ComboBoxItem>
+        <Label Name="Tab3L35" VerticalContentAlignment="Center" Grid.Row="2" Margin="0,0,110,0" HorizontalAlignment="Right" FontSize="20" Content="Время:"/>
+        <TextBox Name="Tab3T7" Margin="0,5,5,5" HorizontalAlignment="Right" Grid.Row="2" Width="100" FontSize="20"/>
+        <Label Name="Tab3L4" Grid.Row="3" Grid.RowSpan="3" BorderThickness="1" BorderBrush="Black"/>
+        <Label Name="Tab3L5" Grid.Row="3" VerticalContentAlignment="Center" FontSize="20" Content="Клиника:"/>
+        <ComboBox Name="Tab3CB1" Grid.Row="3" Margin="200,5,5,5" IsEditable="True" FontSize="20">
+            <ComboBox.ToolTip>
+                <ToolTip Content="Название клиники, заказавшей наряд"/>
+            </ComboBox.ToolTip>
         </ComboBox>
-        <Button Name="Tab3B1" Margin="10,750,1300,10" FontSize="20" Content="Изменить наряд" Click="Tab3B1_Click"/>
-        <Label Name="Tab3L20" Margin="800,5,5,570" BorderThickness="1" BorderBrush="Black"/>
-        <Label Name="Tab3L21" Margin="810,5,550,780" FontSize="20" Content="Вид работы:"/>
-        <ComboBox Name="Tab3CB5" Margin="940,10,10,780" FontSize="20"/>
-        <Label Name="Tab3L22" Margin="810,50,400,730" FontSize="20" Content="Введённые виды работы:"/>
-        <ListBox Name="Tab3LB1" Margin="810,90,400,620" BorderThickness="0" SelectionChanged="Tab3LB1_S">
-            <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Name="Tab3M1" FontSize="20" Header="Удалить вид работы" Click="PartDel1"/>
+        <Label Name="Tab3L6" Grid.Row="4" VerticalContentAlignment="Center" FontSize="20" Content="ФИО врача:"/>
+        <ComboBox Name="Tab3CB2" Grid.Row="4" Margin="200,5,5,5" IsEditable="True" FontSize="20">
+            <ComboBox.ToolTip>
+                <ToolTip Content="ФИО врача, заказавшего наряд"/>
+            </ComboBox.ToolTip>
+        </ComboBox>
+        <Label Name="Tab3L7" Grid.Row="5" VerticalContentAlignment="Center" FontSize="20" Content="ФИО пациента:"/>
+        <TextBox Name="Tab3T1" Grid.Row="5" Margin="200,5,5,5" FontSize="20">
+            <TextBox.ToolTip>
+                <ToolTip Content="ФИО текущего пациента"/>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Grid Grid.Row="6" Grid.RowSpan="2" Name="G32">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="120"/>
+                <ColumnDefinition MinWidth="145"/>
+                <ColumnDefinition MinWidth="140"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label  Name="Tab3L8" Content="Данные о пациенте" Grid.ColumnSpan="4" BorderThickness="1" FontSize="20" BorderBrush="Black"/>
+            <StackPanel Name="Tab3SP1" Margin="0,50,0,0">
+                <Label Name="Tab3L9" FontSize="20" Content="Пол:"/>
+                <CheckBox Name="Tab3Ch1" FontSize="20" Content="Мужской" Checked="CheckedMaleFemale"/>
+                <CheckBox Name="Tab3Ch2" FontSize="20" Content="Женский" Checked="CheckedMaleFemale"/>
+            </StackPanel>
+            <StackPanel Name="Tab3SP2" Grid.Column="1" Margin="0,50,0,0">
+                <Label Name="Tab3L10" FontSize="20" Content="Форма лица:"/>
+                <CheckBox Name="Tab3Ch3" FontSize="20" Content="Круглая" Checked="CheckedForm"/>
+                <CheckBox Name="Tab3Ch4" FontSize="20" Content="Треугольная" Checked="CheckedForm"/>
+                <CheckBox Name="Tab3Ch5" FontSize="20" Content="Квадратная" Checked="CheckedForm"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Margin="0,50,0,0">
+                <Label Name="Tab3L11" FontSize="20" Content="Возраст (лет):"/>
+                <TextBox Name="Tab3T2" FontSize="20" Width="50" HorizontalAlignment="Left"/>
+                <Label Name="Tab3L13" FontSize="20" Content="Цвет зубов:"/>
+                <TextBox Name="Tab3T3" Width="80" HorizontalAlignment="Left" FontSize="20">
+                    <TextBox.ToolTip>
+                        <ToolTip Content="Цвет зубов текущего пациента"/>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Name="Tab3SP3" Grid.Column="3" Margin="0,50,0,0">
+                <Label Name="Tab3L33" Content="Челюсть:" FontSize="20">
+                    <Label.ToolTip>
+                        <ToolTip Content="Челюсть, с которой ведётся работа"/>
+                    </Label.ToolTip>
+                </Label>
+                <CheckBox Name="Tab3Ch6" FontSize="20" Content="Верхняя" Checked="CheckedSkull" Unchecked="CheckedSkull"/>
+                <CheckBox Name="Tab3Ch7" FontSize="20" Content="Нижняя" Checked="CheckedSkull" Unchecked="CheckedSkull"/>
+            </StackPanel>
+        </Grid>
+        <Label Name="Tab3L14" Grid.Row="8" VerticalContentAlignment="Center" Content="Исполнительный сотрудник:" BorderThickness="1" BorderBrush="Black" FontSize="20"/>
+        <ComboBox IsEditable="True" Name="Tab3CB3" Grid.Row="8" Margin="450,5,5,5" FontSize="20">
+            <ComboBox.ToolTip>
+                <ToolTip Content="Сотрудник, выдвинутый на этот наряд"/>
+            </ComboBox.ToolTip>
+        </ComboBox>
+        <Label Name="Tab3L16" Grid.Row="9" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="Black" Content="Комментарий:" FontSize="20"/>
+        <TextBox Name="Tab3T4" Margin="350,5,5,5" Grid.Row="9" FontSize="20" AcceptsReturn="True">
+            <TextBox.ToolTip>
+                <ToolTip Content="Описание наряда"/>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Name="Tab3L18" Grid.Row="10" BorderThickness="1" BorderBrush="Black"/>
+        <Label Name="Tab3L19" Grid.Row="10" Margin="0,0,210,0" VerticalContentAlignment="Center" HorizontalAlignment="Right" FontSize="20" Content="Статус:"/>
+        <ComboBox Name="Tab3CB4" Grid.Row="10" Margin="5" HorizontalAlignment="Right" Width="200" FontSize="20">
+            <ComboBoxItem Foreground="Green" Selected="Tab3CB4_I">Оплачено</ComboBoxItem>
+            <ComboBoxItem Foreground="LightGreen" Selected="Tab3CB4_I">Сдано</ComboBoxItem>
+            <ComboBoxItem Foreground="BurlyWood" Selected="Tab3CB4_I">В клинике</ComboBoxItem>
+            <ComboBoxItem Foreground="Coral" Selected="Tab3CB4_I">В работе</ComboBoxItem>
+            <ComboBoxItem Foreground="Brown" Selected="Tab3CB4_I">Ожидание оплаты</ComboBoxItem>
+            <ComboBoxItem Foreground="Red" Selected="Tab3CB4_I">Долг</ComboBoxItem>
+            <ComboBoxItem Foreground="Black" Selected="Tab3CB4_I">Отменён</ComboBoxItem>
+            <ComboBox.ToolTip>
+                <ToolTip Content="Статус наряда"/>
+            </ComboBox.ToolTip>
+        </ComboBox>
+        <Button Name="Tab3B1" Grid.Row="10" Margin="5,5,0,5" Width="200" HorizontalAlignment="Left" FontSize="17" Content="Сохранить наряд №" Click="NewWork"/>
+        <Label Name="Tab3L20" Grid.Column="1" Grid.RowSpan="6" BorderThickness="1" BorderBrush="Black"/>
+        <Label Name="Tab3L21" Grid.Column="1" VerticalContentAlignment="Center" FontSize="20" Content="Вид работы:"/>
+        <ComboBox Name="Tab3CB5" Grid.Column="1" Margin="150,5,5,5" FontSize="20">
+            <ComboBox.ToolTip>
+                <ToolTip Content="Выбор вида работы для добавления в список работ наряда"/>
+            </ComboBox.ToolTip>
+        </ComboBox>
+        <DataGrid x:Name="dataGrid8" FontSize="17" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Margin="5,5,160,5" AutoGenerateColumns="True" ItemsSource="{Binding}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" IsReadOnly="True" SelectionMode="Single" CanUserSortColumns="False">
+            <DataGrid.ContextMenu>
+                <ContextMenu FontSize="20">
+                    <MenuItem Name="Tab3M1" Header="Удалить" Click="DeleteWorkFromAdd"/>
                 </ContextMenu>
-            </ListBox.ContextMenu>
-        </ListBox>
-        <Label Name="Tab3L23" Margin="1180,50,250,730" FontSize="20" Content="Кол-во:"/>
-        <ListBox Name="Tab3LB2" Margin="1180,90,300,620" BorderThickness="0" SelectionChanged="Tab3LB2_S">
-            <ListBox.ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Label Name="Tab3L25" HorizontalAlignment="Right" Margin="0,0,80,0" Grid.Row="1" Grid.Column="1" FontSize="20" Content="Кол-во:" VerticalContentAlignment="Center"/>
+        <TextBox Name="Tab3T6" Margin="0,5,5,5" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Width="70"/>
+        <Label Name="Tab3L26" HorizontalAlignment="Right" Width="160" Grid.Row="4" VerticalContentAlignment="Center" Grid.Column="1" FontSize="20" Content="Итого:"/>
+        <TextBox Name="Tab3T5" Margin="0,5,5,5" Grid.Row="5" Grid.Column="1" Width="150" HorizontalAlignment="Right" FontSize="20">
+            <TextBox.ToolTip>
+                <ToolTip Content="Общая стоимость, цена наряда"/>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Button Name="Tab3B2" Margin="0,5,5,5" HorizontalAlignment="Right" Width="150" Grid.Row="2" Grid.Column="1" FontSize="20" Content="Вписать" Click="AddType">
+            <Button.ToolTip>
+                <ToolTip Content="Добавить вид работы в список работ наряда"/>
+            </Button.ToolTip>
+        </Button>
+        <Button Name="Tab3B3" Margin="0,5,5,5" HorizontalAlignment="Right" Width="150" Grid.Row="3" Grid.Column="1" FontSize="20" Content="Удалить всё" Click="DeleteAll">
+            <Button.ToolTip>
+                <ToolTip Content="Удалить все работы из списка"/>
+            </Button.ToolTip>
+        </Button>
+        <Label Name="Tab3L27" Grid.Row="6" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
+        <Grid Name="Gt3" Grid.Row="6" Grid.Column="1" Margin="5,5,5,60" MinWidth="380">
+            <Label Content="" BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="8"/>
+            <Label Content="" BorderBrush="Black" BorderThickness="1" Grid.Column="8" Grid.ColumnSpan="8"/>
+            <Label Content="" BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.ColumnSpan="8"/>
+            <Label Content="" BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="8"/>
+            <Label Content="18" IsEnabled="False" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="17" IsEnabled="False" FontSize="14" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="16" IsEnabled="False" FontSize="14" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="15" IsEnabled="False" FontSize="14" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="14" IsEnabled="False" FontSize="14" Grid.Column="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="13" IsEnabled="False" FontSize="14" Grid.Column="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="12" IsEnabled="False" FontSize="14" Grid.Column="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="11" IsEnabled="False" FontSize="14" Grid.Column="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="21" IsEnabled="False" FontSize="14" Grid.Column="8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="22" IsEnabled="False" FontSize="14" Grid.Column="9" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="23" IsEnabled="False" FontSize="14" Grid.Column="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="24" IsEnabled="False" FontSize="14" Grid.Column="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="25" IsEnabled="False" FontSize="14" Grid.Column="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="26" IsEnabled="False" FontSize="14" Grid.Column="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="27" IsEnabled="False" FontSize="14" Grid.Column="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="28" IsEnabled="False" FontSize="14" Grid.Column="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="48" IsEnabled="False" FontSize="14" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="47" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="46" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="45" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="44" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="43" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="42" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="41" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="31" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="32" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="9" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="33" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="34" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="35" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="36" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="37" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Label Content="38" IsEnabled="False" FontSize="14" Grid.Row="1" Grid.Column="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="TeethChecker"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <Button Name="Tab3B4" Grid.Column="1" Grid.Row="6" Height="50" VerticalAlignment="Bottom" Margin="5,0,5,5" FontSize="20" Content="Убрать выделенные зубы" Click="ClearAllTeeth">
+            <Button.ToolTip>
+                <ToolTip Content="Убрать выделения зубов"/>
+            </Button.ToolTip>
+        </Button>
+        <Label Name="Tab3L29" Grid.Row="7" Grid.Column="1" Grid.RowSpan="4" BorderThickness="1" BorderBrush="Black"/>
+        <DataGrid x:Name="dataGrid9" Grid.Row="7" FontSize="17" Grid.Column="1" Margin="5,5,5,0" Grid.RowSpan="3" CanUserSortColumns="False" IsReadOnly="True">
+            <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Name="Tab3M2" FontSize="20" Header="Удалить вид работы" Click="PartDel1"/>
+                    <MenuItem Header="Удалить" Click="DeletePart" FontSize="20"/>
                 </ContextMenu>
-            </ListBox.ContextMenu>
-        </ListBox>
-        <Label Name="Tab3L24" Margin="1280,50,150,730" FontSize="20" Content="Цена:"/>
-        <ListBox Name="Tab3LB3" Margin="1280,90,200,620" BorderThickness="0" SelectionChanged="Tab3LB3_S">
-            <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Name="Tab3M3" FontSize="20" Header="Удалить вид работы" Click="PartDel1"/>
-                </ContextMenu>
-            </ListBox.ContextMenu>
-        </ListBox>
-        <Label Name="Tab3L25" Margin="1400,50,10,730" FontSize="20" Content="Кол-во:"/>
-        <Label Name="Tab3L26" Margin="1180,200,250,580" FontSize="20" Content="Итого:"/>
-        <TextBox Name="Tab3T5" Margin="1280,200,200,580" BorderThickness="0" FontSize="20"/>
-        <Slider Name="Tab3S2" Margin="1400,90,10,690" Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" TickPlacement="BottomRight" ValueChanged="ALot"/>
-        <Button Name="Tab3B2" Margin="1400,120,10,650" FontSize="20" Content="Вписать" Click="AddType"/>
-        <Button Name="Tab3B3" Margin="1400,190,10,580" FontSize="20" Content="Удалить всё"/>
-        <Label Name="Tab3L27" Margin="800,270,5,260" BorderThickness="1" BorderBrush="Black"/>
-        <Image Name="Tab3I2" Margin="1300,280,10,275" Stretch="Fill"/>
-        <Label Name="L18" Margin="820,290,690,480" FontSize="16" Content="18" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L17" Margin="845,290,665,480" FontSize="16" Content="17" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L16" Margin="870,290,640,480" FontSize="16" Content="16" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L15" Margin="895,290,615,480" FontSize="16" Content="15" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L14" Margin="920,290,590,480" FontSize="16" Content="14" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L13" Margin="945,290,565,480" FontSize="16" Content="13" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L12" Margin="970,290,540,480" FontSize="16" Content="12" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L11" Margin="995,290,515,480" FontSize="16" Content="11" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L48" Margin="820,340,690,430" FontSize="16" Content="48" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L47" Margin="845,340,665,430" FontSize="16" Content="47" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L46" Margin="870,340,640,430" FontSize="16" Content="46" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L45" Margin="895,340,615,430" FontSize="16" Content="45" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L44" Margin="920,340,590,430" FontSize="16" Content="44" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L43" Margin="945,340,565,430" FontSize="16" Content="43" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L42" Margin="970,340,540,430" FontSize="16" Content="42" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L41" Margin="995,340,515,430" FontSize="16" Content="41" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L21" Margin="1065,290,445,480" FontSize="16" Content="21" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L22" Margin="1090,290,420,480" FontSize="16" Content="22" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L23" Margin="1115,290,395,480" FontSize="16" Content="23" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L24" Margin="1140,290,370,480" FontSize="16" Content="24" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L25" Margin="1165,290,345,480" FontSize="16" Content="25" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L26" Margin="1190,290,320,480" FontSize="16" Content="26" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L27" Margin="1215,290,295,480" FontSize="16" Content="27" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L28" Margin="1240,290,270,480" FontSize="16" Content="28" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L31" Margin="1065,340,445,430" FontSize="16" Content="31" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L32" Margin="1090,340,420,430" FontSize="16" Content="32" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L33" Margin="1115,340,395,430" FontSize="16" Content="33" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L34" Margin="1140,340,370,430" FontSize="16" Content="34" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L35" Margin="1165,340,345,430" FontSize="16" Content="35" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L36" Margin="1190,340,320,430" FontSize="16" Content="36" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L37" Margin="1215,340,295,430" FontSize="16" Content="37" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="L38" Margin="1240,340,270,430" FontSize="16" Content="38" MouseLeftButtonDown="L18L" MouseRightButtonDown="L18L"/>
-        <Label Name="Tab3L28" Margin="810,400,280,340" FontSize="20"/>
-        <Button Name="Tab3B4" Margin="810,495,260,275" FontSize="20" Content="Очистить всё выделение" Click="Tab3B4_Click"/>
-        <Label Name="Tab3L29" Margin="800,580,5,5" BorderThickness="1" BorderBrush="Black"/>
-        <ComboBox Name="Tab3CB6" Margin="810,590,470,190" FontSize="20" IsEditable="True" KeyUp="Tab3CB6_KeyUp"/>
-        <DatePicker Name="Tab3D3" Margin="1120,590,230,190" FontSize="20"/>
-        <DatePicker Name="Tab3D4" Margin="1360,590,10,190" FontSize="20"/>
-        <Label Name="Tab3L30" Margin="810,640,470,140" FontSize="20" Content="Название этапа:"/>
-        <Label Name="Tab3L31" Margin="1120,640,230,140" FontSize="20" Content="Дата прихода:"/>
-        <Label Name="Tab3L32" Margin="1360,640,10,140" FontSize="20" Content="Дата ухода:"/>
-        <ListBox Name="Tab3LB4" Margin="810,680,470,10" FontSize="20" BorderThickness="0" SelectionChanged="Tab3LB4_S">
-            <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem FontSize="20" Header="Удалить этап" Click="PartDel2"/>
-                </ContextMenu>
-            </ListBox.ContextMenu>
-        </ListBox>
-        <ListBox Name="Tab3LB5" Margin="1120,680,230,10" FontSize="20" BorderThickness="0" SelectionChanged="Tab3LB5_S">
-            <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem FontSize="20" Header="Удалить этап" Click="PartDel2"/>
-                </ContextMenu>
-            </ListBox.ContextMenu>
-        </ListBox>
-        <ListBox Name="Tab3LB6" Margin="1360,680,10,10" FontSize="20" BorderThickness="0" SelectionChanged="Tab3LB6_S">
-            <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem FontSize="20" Header="Удалить этап" Click="PartDel2"/>
-                </ContextMenu>
-            </ListBox.ContextMenu>
-        </ListBox>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Grid Grid.Row="10" Grid.Column="1" Name="G31">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="50"/>
+                <ColumnDefinition MinWidth="100" MaxWidth="200"/>
+                <ColumnDefinition MinWidth="100" MaxWidth="200"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Name="Tab3CB6" Margin="5" FontSize="20" IsEditable="True">
+                <ComboBox.ToolTip>
+                    <ToolTip Content="Название этапа. Enter для ввода в список"/>
+                </ComboBox.ToolTip>
+            </ComboBox>
+            <DatePicker Name="Tab3D3" Grid.Column="1" Margin="5" FontSize="20">
+                <DatePicker.ToolTip>
+                    <ToolTip Content="Дата прихода этапа"/>
+                </DatePicker.ToolTip>
+            </DatePicker>
+            <DatePicker Name="Tab3D4" Grid.Column="2" Margin="5" FontSize="20">
+                <DatePicker.ToolTip>
+                    <ToolTip Content="Дата ухода этапа"/>
+                </DatePicker.ToolTip>
+            </DatePicker>
+            <Button Grid.Column="3" Margin="5" Content="Ввод" FontSize="20" Click="AddPart"/>
+        </Grid>
     </Grid>
 </Window>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuliaUpgrade2.0", "JuliaUpgrade2.0.csproj", "{37A9FEBB-546D-46B0-99D8-18A08711F106}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuliaUpgrade2.0", "JuliaUpgrade2.0.csproj", "{37A9FEBB-546D-46B0-99D8-18A08711F106}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

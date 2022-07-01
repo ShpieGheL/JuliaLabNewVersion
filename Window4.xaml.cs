@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Data.OleDb;
 using System.Data;
+using System.Windows.Controls;
+using System.Collections.Concurrent;
+using System.Windows.Media;
 
 namespace JuliaUpgrade2._0
 {
@@ -11,209 +14,188 @@ namespace JuliaUpgrade2._0
     /// </summary>
     public partial class Window4 : Window
     {
-        string t = "%";
-        DateTime d = DateTime.MinValue;
-        int b = 0;
-        List<int> d1 = new List<int>();
-        List<int> d2 = new List<int>();
         OleDbConnection connection;
-        List<KeyValuePair<string, int>> valueList = new List<KeyValuePair<string, int>>();
-        public Window4()
+        List<KeyValuePair<string, int>> valueList = new();
+        ConcurrentDictionary<string, int> items = new();
+        readonly int ind = 0;
+        RootObject root;
+
+        public Window4(OleDbConnection con, RootObject root, int ind)
         {
+            this.root = root;
+            DataSet ds = new();
+            List<string> comboboxitems;
             InitializeComponent();
-            d1.Add(DateTime.Now.Month);
-            d1.Add(DateTime.Now.AddMonths(-1).Month);
-            d1.Add(DateTime.Now.AddMonths(-2).Month);
-            d1.Add(DateTime.Now.Year);
-            if (d1.Contains(12) && d1.Contains(1))
-                d1.Add(DateTime.Now.AddYears(-1).Year);
-            d2.Add(DateTime.Now.Month);
-            d2.Add(DateTime.Now.AddMonths(-1).Month);
-            d2.Add(DateTime.Now.AddMonths(-2).Month);
-            d2.Add(DateTime.Now.AddMonths(-3).Month);
-            d2.Add(DateTime.Now.AddMonths(-4).Month);
-            d2.Add(DateTime.Now.AddMonths(-5).Month);
-            d2.Add(DateTime.Now.Year);
-            if (d2.Contains(12) && d2.Contains(1))
-                d2.Add(DateTime.Now.AddYears(-1).Year);
-        }
-        public Window4(OleDbConnection con, RootObject root) : this()
-        {
             connection = con;
-            chrt();
+            this.ind = ind;
+            comboboxitems = new() { "За последний месяц", "За последний квартал", "За последний год" };
+            C2.ItemsSource = comboboxitems;
+            switch (ind)
+            {
+                case 1:
+                    comboboxitems = new() { "Оплачено", "Сдано", "В клинике", "В работе", "Ожидание оплаты", "Долг", "Отменён" };
+                    C1.ItemsSource = comboboxitems;
+                    break;
+                case 2:
+                    L1.Content = "Клиника:";
+                    new OleDbDataAdapter("SELECT * FROM Labs", connection).Fill(ds, "Labs");
+                    foreach (DataRow row in ds.Tables["Labs"].Rows)
+                        if (!C1.Items.Contains(row["Название клиники"].ToString()) && row["Название клиники"].ToString().Replace(" ","") != "")
+                            C1.Items.Add(row["Название клиники"].ToString());
+                    break;
+                case 3:
+                    L1.Content = "Вид:";
+                    new OleDbDataAdapter("SELECT * FROM Work_types", connection).Fill(ds, "Work_types");
+                    foreach (DataRow row in ds.Tables["Work_types"].Rows)
+                        C1.Items.Add(row["Вид работы"].ToString());
+                    break;
+            }
+            Check(null, null);
+            Setcolor();
         }
 
-        public void chrt()
+        private void Setcolor()
         {
+            var objcolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString(root.Objcolor));
+            var backcolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString(root.Backcolor));
+            var textcolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString(root.Textcolor));
+            var textinobj = new SolidColorBrush((Color)ColorConverter.ConvertFromString(root.TextInObjcolor));
+            var Bfontsize = root.FontButton;
+            var CBfontsize = root.FontCB;
+            G.Background = backcolor;
+            L1.Foreground = textcolor;
+            L2.Foreground = textcolor;
+            C1.Background = objcolor;
+            C1.Foreground = textinobj;
+            C1.FontSize = CBfontsize;
+            C2.Background = objcolor;
+            C2.Foreground = textinobj;
+            C2.FontSize = CBfontsize;
+            B.FontSize = Bfontsize;
+        }
+
+        private void Check(object sender, RoutedEventArgs e)
+        {
+            string adapt = "";
             chart.DataContext = null;
-            OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM Labs", connection);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "Labs");
-            string[] x = new string[0];
-            int[] y = new int[0];
-            foreach (DataRow row in ds.Tables["Labs"].Rows)
-                if (Array.IndexOf(x, row["Название клиники"].ToString()) == -1)
-                {
-                    Array.Resize(ref x, x.Length + 1);
-                    x[x.Length - 1] = row["Название клиники"].ToString();
-                }
-            foreach (string s in x)
-            {
-                Array.Resize(ref y, y.Length + 1);
-                if (t == "%")
-                    da = new OleDbDataAdapter("SELECT * FROM Labs WHERE [Название клиники]='" + s + "' AND Статус LIKE '" + t + "'", connection);
-                else
-                    da = new OleDbDataAdapter("SELECT * FROM Labs WHERE [Название клиники]='" + s + "' AND Статус='" + t + "'", connection);
-                ds = new DataSet();
-                da.Fill(ds, "Labs");
-                foreach (DataRow row1 in ds.Tables["Labs"].Rows)
-                {
-                    if (b == 0)
-                    {
-                        da = new OleDbDataAdapter("SELECT * FROM Comm WHERE Номер=" + Convert.ToInt32(row1["Номер"].ToString()), connection);
-                        ds = new DataSet();
-                        da.Fill(ds, "Comm");
-                        foreach (DataRow row2 in ds.Tables["Comm"].Rows)
-                            y[y.Length - 1] += Convert.ToInt32(row2["Цена"].ToString());
-                    }
-                    else
-                        switch (b)
-                        {
-                            case 1:
-                                if (row1["Дата ухода"].ToString() != "" && row1["Дата ухода"].ToString() != null)
-                                    if (Convert.ToDateTime(row1["Дата ухода"].ToString()).AddDays(7) >= DateTime.Now)
-                                    {
-                                        da = new OleDbDataAdapter("SELECT * FROM Comm WHERE Номер=" + Convert.ToInt32(row1["Номер"].ToString()), connection);
-                                        ds = new DataSet();
-                                        da.Fill(ds, "Comm");
-                                        foreach (DataRow row2 in ds.Tables["Comm"].Rows)
-                                            y[y.Length - 1] += Convert.ToInt32(row2["Цена"].ToString());
-                                    }
-                                break;
-                            case 2:
-                                if (row1["Дата ухода"].ToString() != "" && row1["Дата ухода"].ToString() != null)
-                                    if (Convert.ToDateTime(row1["Дата ухода"].ToString()).Month.Equals(d.Month))
-                                    {
-                                        da = new OleDbDataAdapter("SELECT * FROM Comm WHERE Номер=" + Convert.ToInt32(row1["Номер"].ToString()), connection);
-                                        ds = new DataSet();
-                                        da.Fill(ds, "Comm");
-                                        foreach (DataRow row2 in ds.Tables["Comm"].Rows)
-                                            y[y.Length - 1] += Convert.ToInt32(row2["Цена"].ToString());
-                                    }
-                                break;
-                            case 3:
-                                if (row1["Дата ухода"].ToString() != "" && row1["Дата ухода"].ToString() != null)
-                                    if (d1.Contains(Convert.ToDateTime(row1["Дата ухода"].ToString()).Month) && d1.Contains(Convert.ToDateTime(row1["Дата ухода"].ToString()).Year))
-                                    {
-                                        da = new OleDbDataAdapter("SELECT * FROM Comm WHERE Номер=" + Convert.ToInt32(row1["Номер"].ToString()), connection);
-                                        ds = new DataSet();
-                                        da.Fill(ds, "Comm");
-                                        foreach (DataRow row2 in ds.Tables["Comm"].Rows)
-                                            y[y.Length - 1] += Convert.ToInt32(row2["Цена"].ToString());
-                                    }
-                                break;
-                            case 4:
-                                if (row1["Дата ухода"].ToString() != "" && row1["Дата ухода"].ToString() != null)
-                                    if (d2.Contains(Convert.ToDateTime(row1["Дата ухода"].ToString()).Month) && d2.Contains(Convert.ToDateTime(row1["Дата ухода"].ToString()).Year))
-                                    {
-                                        da = new OleDbDataAdapter("SELECT * FROM Comm WHERE Номер=" + Convert.ToInt32(row1["Номер"].ToString()), connection);
-                                        ds = new DataSet();
-                                        da.Fill(ds, "Comm");
-                                        foreach (DataRow row2 in ds.Tables["Comm"].Rows)
-                                            y[y.Length - 1] += Convert.ToInt32(row2["Цена"].ToString());
-                                    }
-                                break;
-                            case 5:
-                                if (row1["Дата ухода"].ToString() != "" && row1["Дата ухода"].ToString() != null)
-                                    if (Convert.ToDateTime(row1["Дата ухода"].ToString()).Year.Equals(DateTime.Now.Year))
-                                    {
-                                        da = new OleDbDataAdapter("SELECT * FROM Comm WHERE Номер=" + Convert.ToInt32(row1["Номер"].ToString()), connection);
-                                        ds = new DataSet();
-                                        da.Fill(ds, "Comm");
-                                        foreach (DataRow row2 in ds.Tables["Comm"].Rows)
-                                            y[y.Length - 1] += Convert.ToInt32(row2["Цена"].ToString());
-                                    }
-                                break;
-                        }
-                }
-            }
+            items.Clear();
             valueList.Clear();
-            for (int i = 0; i < x.Length; i++)
-                if (y[i] != 0)
-                    valueList.Add(new KeyValuePair<string, int>(x[i], y[i]));
+            DataSet ds = new();
+            switch (ind)
+            {
+                case 1:
+                    adapt = "SELECT * FROM Labs INNER JOIN Comm ON Labs.Номер = Comm.Номер WHERE Labs.[Название клиники] IS NOT NULL";
+                    if (C1.Text != "")
+                        adapt += " AND Статус=" + $"'{C1.Text}'";
+                    new OleDbDataAdapter(adapt + TimeAdapt(), connection).Fill(ds, "Labs");
+                    foreach (DataRow row in ds.Tables["Labs"].Rows)
+                    {
+                        if (!int.TryParse(row["Цена"].ToString(), out var pricenow))
+                            pricenow = 0;
+                        items.AddOrUpdate(row["Название клиники"].ToString(), pricenow, (key, keyvalue) => keyvalue + pricenow);
+                    }
+                    break;
+                case 2:
+                    adapt = "SELECT * FROM Labs INNER JOIN Comm ON Labs.Номер = Comm.Номер WHERE Labs.[Название клиники]=" + $"'{C1.Text}'";
+                    new OleDbDataAdapter(adapt + TimeAdapt(), connection).Fill(ds, "Labs");
+                    foreach (DataRow row in ds.Tables["Labs"].Rows)
+                    {
+                        if (!int.TryParse(row["Цена"].ToString(), out var pricenow))
+                            pricenow = 0;
+                        items.AddOrUpdate(row["Статус"].ToString(), pricenow, (key, keyvalue) => keyvalue + pricenow);
+                    }
+                    break;
+                case 3:
+                    adapt = "SELECT Labs.Номер AS Нм,Labs.[Название клиники] AS Кл, Works.Цена AS Цн, Works.Количество FROM Labs INNER JOIN Works ON Labs.Номер = Works.Номер WHERE Works.[Вид работы]=" + $"'{C1.Text}'";
+                    new OleDbDataAdapter(adapt + TimeAdapt(), connection).Fill(ds, "Labs");
+                    foreach (DataRow row in ds.Tables["Labs"].Rows)
+                    {
+                        if (!int.TryParse(row["Цн"].ToString(), out var pricenow))
+                            pricenow = 0;
+                        if (!int.TryParse(row["Количество"].ToString(), out var count))
+                            pricenow *= count;
+                        items.AddOrUpdate(row["Кл"].ToString(), pricenow, (key, keyvalue) => keyvalue + pricenow);
+                    }
+                    break;
+            }
+            Visualizer();
+        }
+
+        private string TimeAdapt()
+        {
+            string adapt = "";
+            switch (C2.Text)
+            {
+                case "За последний месяц":
+                    string month = DateTime.Now.Month.ToString();
+                    if (month.Length == 1)
+                        month = "0" + month;
+                    adapt = " AND [Дата прихода] LIKE " + $"'%.{month}.{DateTime.Now.Year}'";
+                    break;
+                case "За последний квартал":
+                    List<List<string>> quartals = new();
+                    quartals.Add(new List<string> { "01", "02", "03" });
+                    quartals.Add(new List<string> { "04", "05", "06" });
+                    quartals.Add(new List<string> { "07", "08", "09" });
+                    quartals.Add(new List<string> { "10", "11", "12" });
+                    string now = DateTime.Now.Month.ToString();
+                    if (now.Length == 1)
+                        now = "0" + now;
+                    foreach (var c in quartals)
+                        if (c.Contains(now))
+                        {
+                            adapt = " AND ([Дата прихода] LIKE " + $"'%.{c[0]}.{DateTime.Now.Year}'" + " OR [Дата прихода] LIKE " + $"'%.{c[1]}.{DateTime.Now.Year}'" + " OR [Дата прихода] LIKE " + $"'%.{c[2]}.{DateTime.Now.Year}'" + ")";
+                            break;
+                        }
+                    break;
+                case "За последний год":
+                    adapt = " AND [Дата прихода] LIKE " + $"'%.{DateTime.Now.Year}'";
+                    break;
+                default:
+                    adapt = "";
+                    break;
+            }
+            return adapt;
+        }
+
+        private void Visualizer()
+        {
+            foreach (var c in items)
+                valueList.Add(new KeyValuePair<string, int>(c.Key, c.Value));
             chart.DataContext = valueList;
         }
 
-        private void C2_Selected(object sender, RoutedEventArgs e)
+        private void Selection(object sender, SelectionChangedEventArgs e)
         {
-            t = "Оплачено";
-            chrt();
-        }
-
-        private void C3_Selected(object sender, RoutedEventArgs e)
-        {
-            t = "Сдано";
-            chrt();
-        }
-
-        private void C4_Selected(object sender, RoutedEventArgs e)
-        {
-            t = "В работе";
-            chrt();
-        }
-
-        private void C5_Selected(object sender, RoutedEventArgs e)
-        {
-            t = "Ожидание оплаты";
-            chrt();
-        }
-
-        private void C6_Selected(object sender, RoutedEventArgs e)
-        {
-            t = "Долг";
-            chrt();
-        }
-
-        private void C7_Selected(object sender, RoutedEventArgs e)
-        {
-            t = "%";
-            chrt();
-        }
-
-        private void C9_Selected(object sender, RoutedEventArgs e)
-        {
-            b = 0;
-            chrt();
-        }
-
-        private void C10_Selected(object sender, RoutedEventArgs e)
-        {
-            b = 1;
-            chrt();
-        }
-
-        private void C11_Selected(object sender, RoutedEventArgs e)
-        {
-            b = 2;
-            chrt();
-        }
-
-        private void C12_Selected(object sender, RoutedEventArgs e)
-        {
-            b = 3;
-            chrt();
-        }
-
-        private void C13_Selected(object sender, RoutedEventArgs e)
-        {
-            b = 4;
-            chrt();
-        }
-
-        private void C14_Selected(object sender, RoutedEventArgs e)
-        {
-            b = 5;
-            chrt();
+            if (chart.SelectedItem == null)
+                return;
+            switch (ind) 
+            {
+                case 1:
+                    string clinic = "";
+                    foreach (var c in items.Keys)
+                        if (chart.SelectedItem.ToString().Contains(c))
+                            clinic = c;
+                    (Owner as MainWindow).adapter = $"SELECT * FROM Labs WHERE [Название клиники]=" + $"'{clinic}' ORDER BY Номер DESC";
+                    (Owner as MainWindow).SecondaryDataBaseUpdate();
+                    break;
+                case 2:
+                    string status = "";
+                    foreach (var c in items.Keys)
+                        if (chart.SelectedItem.ToString().Contains(c))
+                            status = c;
+                    (Owner as MainWindow).adapter = $"SELECT * FROM Labs WHERE [Название клиники]=" + $"'{C1.Text}' AND Статус=" + $"'{status}' ORDER BY Номер DESC";
+                    (Owner as MainWindow).SecondaryDataBaseUpdate();
+                    break;
+                case 3:
+                    string work = "";
+                    foreach (var c in items.Keys)
+                        if (chart.SelectedItem.ToString().Contains(c))
+                            work = c;
+                    (Owner as MainWindow).adapter = $"SELECT Labs.* FROM Labs INNER JOIN Works ON Labs.Номер = Works.Номер WHERE [Название клиники]=" + $"'{work}' AND Works.[Вид работы]=" + $"'{C1.Text}' ORDER BY Номер DESC";
+                    (Owner as MainWindow).SecondaryDataBaseUpdate();
+                    break;
+            }
         }
     }
 }

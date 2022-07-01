@@ -1,19 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using System.Data.OleDb;
-using System.Data;
-using System.IO;
+using System.Windows.Media;
 
 namespace JuliaUpgrade2._0
 {
@@ -23,30 +10,48 @@ namespace JuliaUpgrade2._0
     public partial class Window3 : Window
     {
         readonly OleDbConnection connection;
-        public Window3()
-        {
-            InitializeComponent();
-        }
+        RootObject root;
 
         public Window3(OleDbConnection connection, RootObject root)
         {
             this.connection = connection;
+            this.root = root;
             InitializeComponent();
+            Setcolor();
+        }
+
+        private void Setcolor()
+        {
+            var objcolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString(root.Objcolor));
+            var backcolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString(root.Backcolor));
+            var textcolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString(root.Textcolor));
+            var textinobj = new SolidColorBrush((Color)ColorConverter.ConvertFromString(root.TextInObjcolor));
+            var TBfontsize = root.FontTB;
+            G1.Background = backcolor;
+            Tab1L1.Foreground = textcolor;
+            Tab1L2.Foreground = textcolor;
+            Tab1T1.Background = objcolor;
+            Tab1T2.Background = objcolor;
+            Tab1T1.Foreground = textinobj;
+            Tab1T2.Foreground = textinobj;
+            B1.FontSize = TBfontsize;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            OleDbDataAdapter da = new("SELECT * FROM Work_types", connection);
-            DataSet ds = new();
-            da.Fill(ds, "Work_types");
-            if (Tab1T1.Text != "" || Tab1T2.Text != "")
+            string error = "Ошибки при добавлении работы:\n";
+            if (!int.TryParse(Tab1T2.Text, out int price))
+                error += "\nНеверно написана цена.";
+            if (Tab1T1.Text == "")
+                error += "\nНе указано название.";
+            if (error == "Ошибки при добавлении работы:\n")
             {
-                OleDbCommand co = new("INSERT INTO Work_types ([Вид работы],Цена) VALUES ('" + Tab1T1.Text + "','" + Convert.ToInt32(Tab1T2.Text) + "')", connection);
-                co.ExecuteNonQuery();
-                MessageBox.Show("Вид работы успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                new OleDbCommand("INSERT INTO Work_types ([Вид работы],Цена) VALUES ('" + Tab1T1.Text + "','" + price + "')", connection).ExecuteReader();
+                (this.Owner as MainWindow).UpdateWorks();
+                MessageBox.Show("Новый вид работы успешно добавлен!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
-                MessageBox.Show("Не введены некоторые данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
